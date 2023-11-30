@@ -3,16 +3,47 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { LevelTableComponent } from './levels/level-table/level-table.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LevelService } from './Core/Services/level.service';
+import { AddLevelFormComponent } from './levels/add-level-form/add-level-form.component';
+import { FormsModule } from '@angular/forms';
+import { UpdateLevelFormComponent } from './levels/update-level-form/update-level-form.component';
+import { SubjectTableComponent } from './subjects/subject-table/subject-table.component';
+import { AddSubjectFormComponent } from './subjects/add-subject-form/add-subject-form.component';
+import { UpdateSubjectFormComponent } from './subjects/update-subject-form/update-subject-form.component';
+import { AnswerTableComponent } from './Answers/answer-table/answer-table.component';
+import { AddAnswerFormComponent } from './Answers/add-answer-form/add-answer-form.component';
+import { UpdateAnswerFormComponent } from './Answers/update-answer-form/update-answer-form.component';
+import { MediaTableComponent } from './Medias/media-table/media-table.component';
+import { AddMediaFormComponent } from './Medias/add-media-form/add-media-form.component';
+import { UpdateMediaFormComponent } from './Medias/update-media-form/update-media-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdminDashboardComponent,
+    LevelTableComponent,
+    AddLevelFormComponent,
+    UpdateLevelFormComponent,
+    SubjectTableComponent,
+    AddSubjectFormComponent,
+    UpdateSubjectFormComponent,
+    AnswerTableComponent,
+    AddAnswerFormComponent,
+    UpdateAnswerFormComponent,
+    MediaTableComponent,
+    AddMediaFormComponent,
+    UpdateMediaFormComponent 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [LevelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

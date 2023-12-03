@@ -19,6 +19,13 @@ import { UpdateAnswerFormComponent } from './Answers/update-answer-form/update-a
 import { MediaTableComponent } from './Medias/media-table/media-table.component';
 import { AddMediaFormComponent } from './Medias/add-media-form/add-media-form.component';
 import { UpdateMediaFormComponent } from './Medias/update-media-form/update-media-form.component';
+import { QuestionTableComponent } from './Questions/question-table/question-table.component';
+import { AddQuestionFormComponent } from './Questions/add-question-form/add-question-form.component';
+import { UpdateQuestionFormComponent } from './Questions/update-question-form/update-question-form.component';
+import { QuestionInfoComponent } from './Questions/question-info/question-info.component';
+import { ChooseSubjectForQuestionComponent } from './Questions/choose-subject-for-question/choose-subject-for-question.component';
+import { ChooseMediaForQuestionComponent } from './Questions/choose-media-for-question/choose-media-for-question.component';
+import { ChooseAnswersForQuestionComponent } from './Questions/choose-answers-for-question/choose-answers-for-question.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +42,14 @@ import { UpdateMediaFormComponent } from './Medias/update-media-form/update-medi
     UpdateAnswerFormComponent,
     MediaTableComponent,
     AddMediaFormComponent,
-    UpdateMediaFormComponent 
+    UpdateMediaFormComponent,
+    QuestionTableComponent,
+    AddQuestionFormComponent,
+    UpdateQuestionFormComponent,
+    QuestionInfoComponent,
+    ChooseSubjectForQuestionComponent,
+    ChooseMediaForQuestionComponent,
+    ChooseAnswersForQuestionComponent 
   ],
   imports: [
     BrowserModule,

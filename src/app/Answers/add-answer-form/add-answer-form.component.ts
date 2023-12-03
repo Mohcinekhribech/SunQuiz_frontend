@@ -15,8 +15,7 @@ export class AddAnswerFormComponent {
 
   answer:Answer = {
     id: 0,
-    text: '',
-    validations: []
+    text: ''
   }
   
   postData()

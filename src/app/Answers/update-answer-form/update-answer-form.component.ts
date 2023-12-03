@@ -12,8 +12,7 @@ export class UpdateAnswerFormComponent {
   constructor(private answerService: AnswerService) {}
   answer:Answer = {
     id:0,
-    text:'',
-    validations:[]
+    text:''
   }
   @Input() id: number=0;
   ngOnInit(){

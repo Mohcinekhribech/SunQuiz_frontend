@@ -1,0 +1,122 @@
+<div class="flex space-x-4 w-full">
+    <section class="w-[40%]">
+        <div class="flex max-md:flex-col md:space-x-4 w-full p-2">
+            <div class="w-full shadow p-[2px]">
+                <h3 class="text-lg font-medium p-2 border-b-2 border-indigo-600  text-indigo-500">Details</h3>
+                <div *ngIf="media.id != 0" class="mt-4">
+                    <div class=" my-2 border-b p-2 ">
+                        <h4 class="text-gray-400 font-medium">
+                            Media :
+                        </h4>
+                        <div class="text-md font-medium text-gray-800">
+                            <div class="w-[100px]">
+                                <div *ngIf="media.type === 'VIDEO'">
+                                    <video [src]="media.link" controls></video>
+                                </div>
+                                <div *ngIf="media.type === 'IMAGE' || media.type === 'GIF'">
+                                    <img [src]="media.link" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-b p-2 my-2">
+                        <h4 class="text-gray-400 font-medium">
+                            type :
+                        </h4>
+                        <p class="text-md font-medium text-gray-800">
+                            {{ media.type }}
+                        </p>
+                    </div>
+                    <div class="border-b p-2 my-2">
+                        <h4 class="text-gray-400 font-medium">
+                            description :
+                        </h4>
+                        <p class="text- text-gray-800">
+                            {{ media.description }}
+                        </p>
+                    </div>
+                </div>
+                <div *ngIf="media.id == 0" class="mt-4 h-[300px] flex">
+                    <p class="m-auto font-medium text-md text-indigo-300 ">No Media Selected</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-[60%] h-[70vh]">
+        <div class="flex max-md:flex-col md:space-x-4 w-full p-2 h-full">
+            <div class="w-full shadow p-[2px]">
+                <h3 class="text-lg font-medium p-2 border-b-2 border-indigo-600  text-indigo-500">Choose a Media</h3>
+                <div class="mt-4">
+                    <form class="flex items-center m-2">
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                    fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <input type="text" id="simple-search"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Search" required="">
+                        </div>
+                    </form>
+                    <div class="p-2 h-[47vh] overflow-y-scroll " >
+                        <div *ngFor="let media of medias"
+                            class="p-2 border border-indigo-200 rounded-md flex justify-between  m-2">
+                            <div class="flex space-x-2">
+                                <div class="w-[100px]">
+                                    <div *ngIf="media.type === 'VIDEO'">
+                                        <video [src]="media.link" controls></video>
+                                    </div>
+                                    <div *ngIf="media.type === 'IMAGE' || media.type === 'GIF'">
+                                        <img [src]="media.link" alt="">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-600 ">{{ media.type }}</p>
+                                    <p class="text-gray-400 text-xs">{{ media.description }}</p>
+
+                                </div>
+                            </div>
+                            <button (click)="chooseSubject(media)"><svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ">
+    <button *ngIf="media.id !=0" (click)="sendDataToParent() "
+        class="text-white bg-indigo-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex space-x-2 "><span>Next</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="20" height="20"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l14 0" />
+            <path d="M13 18l6 -6" />
+            <path d="M13 6l6 6" />
+        </svg></button>
+
+    <button *ngIf="media.id ==0" disabled
+        class="text-white bg-indigo-300  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex space-x-2 "><span>Next</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="20" height="20"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l14 0" />
+            <path d="M13 18l6 -6" />
+            <path d="M13 6l6 6" />
+        </svg></button>
+</div>

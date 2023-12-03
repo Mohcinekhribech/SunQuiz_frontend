@@ -1,0 +1,35 @@
+<div class="p-4">
+    <form (submit)="sendDataToParent()" class="max-w-md mx-auto flex flex-col border p-8 rounded-sm">
+        <div class="mb-5">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">text</label>
+            <textarea [(ngModel)]="questionInfo.text" name="text" type="text"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                required>
+            </textarea>
+        </div>
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+            <select [(ngModel)]="questionInfo.type"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                name="type" id="">
+                <option value=""></option>
+                <option value="MULTI_CHOICE">MULTI CHOICE</option>
+                <option value="SINGLE_CHOICE">SINGLE CHOICE</option>
+                <option value="DIRECT">DIRECT</option>
+            </select>
+        </div>
+        <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Level</label>
+            <select [(ngModel)]="questionInfo.level_id"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                name="level" id="">
+                <option value="">Level</option>
+                <option *ngFor="let level of levels" [value]="level.id">{{ level.name }}</option>
+            </select>
+        </div>
+        <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ">
+            <button type="submit"
+                class="text-white bg-indigo-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex space-x-2 "><span>Next</span> <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg></button>
+        </div>
+    </form>
+</div>

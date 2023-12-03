@@ -20,7 +20,7 @@
                     <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                     </svg>
-                    Add Media
+                    Add Subject
                 </button>
             </div>
         </div>
@@ -34,10 +34,16 @@
                         media
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        text
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         type
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        description
+                        subject
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        level
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -45,32 +51,38 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let media of medias" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr *ngFor="let question of questions" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{media.id}}
+                        {{question.id}}
                     </th>
                     <td class="px-6 py-4">
-                        <div  class="w-[100px]">
-                              <div *ngIf="media.type === 'VIDEO'">
-                                <video [src]="media.link" controls></video>
-                              </div>
-                              <div *ngIf="media.type === 'IMAGE' || media.type === 'GIF'">
-                                <img [src]="media.link" alt="">
-                              </div>
-                        </div>
+                        <div *ngIf="question.media" class="w-[100px]">
+                            <div *ngIf="question.media.type === 'VIDEO'">
+                              <video [src]="question.media.link" controls></video>
+                            </div>
+                            <div *ngIf="question.media.type === 'IMAGE' || question.media.type === 'GIF'">
+                              <img [src]="question.media.link" alt="">
+                            </div>
+                      </div>
                     </td>
                     <td class="px-6 py-4">
-                        {{ media.type }}
+                        {{question.text}}
                     </td>
                     <td class="px-6 py-4">
-                        {{ media.description }}
+                        {{question.type}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{question.subject?question.subject.title:''}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{question.level?question.level.name:''}}
                     </td>
                     <td class="px-6 py-4">
                        <div class="flex space-x-4">
-                        <button (click)="showupdateForm(media.id)" class="text-gray-500 hover:text-lime-500">
+                        <button (click)="showupdateForm(question.id)" class="text-gray-500 hover:text-lime-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 15l8.385 -8.415a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3z" /><path d="M16 5l3 3" /><path d="M9 7.07a7 7 0 0 0 1 13.93a7 7 0 0 0 6.929 -6" /></svg>
                         </button>
-                        <button (click)="delete(media.id)" class="text-gray-500 hover:text-red-500">
+                        <button (click)="delete(question.id)" class="text-gray-500 hover:text-red-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
                         </button>
                        </div>
@@ -100,44 +112,6 @@
                     </div>
                 </div>
             </div>
-    </div>
-    <div *ngIf="isShowAddForm" class="backdrop-brightness-50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-2xl max-h-full">
-            <div class="relative bg-white rounded-lg shadow">
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Add New Subject
-                    </h3>
-                    <button (click)="closeAddForm()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" >
-                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <app-add-media-form></app-add-media-form>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div *ngIf="isShowUpdateForm" class="backdrop-brightness-50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-2xl max-h-full">
-            <div class="relative bg-white rounded-lg shadow">
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Update Level
-                    </h3>
-                    <button (click)="closeUpdateForm()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" >
-                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <app-update-media-form [id]="id"></app-update-media-form>
-            </div>
-        </div>
     </div>
 
 

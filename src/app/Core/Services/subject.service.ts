@@ -11,7 +11,7 @@ export class SubjectService {
 
   constructor(private http: HttpClient) {}
 
-  getSomeData(page:number): Observable<any> {
+  public getSomeData(page:number): Observable<any> {
     return this.http.get(`${this.apiUrl}/subject?size=8&page=`+page);
   }
 

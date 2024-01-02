@@ -25,12 +25,14 @@ export class ChooseMediaForQuestionComponent {
   ngOnInit(){
     this.getSubjects()
   }
+
   getSubjects()
   {
     this.mediaService.getSomeData(0).subscribe(
       res => this.medias = res.content
     )
   }
+  
   chooseSubject(media:Media)
   {
     this.media = media;

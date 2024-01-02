@@ -1,0 +1,29 @@
+<div>
+    <form (submit)="postData()" class="max-w-sm mx-auto">
+        <div class="flex space-x-4">
+            <div class="mb-5">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">first name</label>
+                <input [(ngModel)]="teacher.firstName" name="name"  type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+            </div>
+            <div class="mb-5">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">last name</label>
+                <input [(ngModel)]="teacher.lastName" name="name"  type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+            </div>
+        </div>
+        <div class="mb-5">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">date of birth</label>
+            <input [(ngModel)]="teacher.dateOfBirth" name="name"  type="date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+        </div>
+        <div class="mb-5">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">adress</label>
+            <input [(ngModel)]="teacher.adress" name="name"  type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+        </div>
+        <div class="mb-5">
+            <label for="minPoint" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">spciality</label>
+            <input [(ngModel)]="teacher.speciality" name="description"  type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+        </div>
+        <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ">
+            <button type="submit" class="text-white bg-indigo-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add</button>
+        </div>
+    </form>
+</div>

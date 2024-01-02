@@ -1,0 +1,56 @@
+<!-- <p class="font-medium text-2xl text-center ">What's java ?</p> -->
+<div class="flex space-x-2 p-4 bg-gray-100">
+    <div class="w-1/2 border h-[95vh] rounded-md bg-gray-50">
+        <div class="flex p-2 justify-between">
+            <p class="text-md font-medium p-2 bg-indigo-600 text-white h-fit w-fit rounded-md">{{ points }}pts</p>
+            <p class="text- p-2 bg-indigo-600 text-white h-fit w-fit rounded-md">{{index
+                +1}}/{{quiz.quizzQuestions.length}}</p>
+        </div>
+        <div>
+            <h2 class="bg-indigo-200 my-2 text-center p-2 font-medium text-xl text-indigo-800 ">
+                {{question?.text}}
+            </h2>
+        </div>
+        <div class="w-full h-[78.5%] p-2">
+            <div class="h-[71vh] flex items-center justify-center">
+                <img *ngIf="question?.media?.type == 'IMAGE' || question?.media?.type == 'GIF'" class="max-h-[70vh]"
+                    [src]="question?.media?.link" alt="">
+                <video *ngIf="question?.media?.type == 'VIDEO'" class="max-h-[70vh]" [src]="question?.media?.link"
+                    alt="" controls></video>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/2 border h-[95vh] rounded-md bg-gray-50 p-4">
+        <div class="flex p-2 justify-between items-center">
+            <p class="text-md font-medium p-2 bg-indigo-500 text-white h-fit w-fit rounded-md"> {{restOftime}} s</p>
+            <button *ngIf="quiz.quizzQuestions.length -1 > index" (click)="next()"
+                class="p-2 border border-indigo-300 text-indigo-700 h-fit w-fit rounded-sm font-medium flex space-x-2 items-center hover:text-white hover:bg-indigo-500"><span>Next</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20"
+                    height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M9 6l6 6l-6 6" />
+                </svg></button>
+            <button *ngIf="quiz.quizzQuestions.length -1 == index" (click)="Done()"
+                class="p-2 border border-indigo-300 text-indigo-700 h-fit w-fit rounded-sm font-medium flex space-x-2 items-center hover:text-white hover:bg-indigo-500"><span>Done</span><svg
+                    xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24"
+                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M5 12l5 5l10 -10" />
+                </svg></button>
+        </div>
+        <div class="w-full flex justify-center items-center h-[50vh] overflow-y-scroll">
+            <div class=" p-4 grid grid-cols-2 gap-4 w-full">
+                <div class="w-full flex flex-col" *ngFor="let answer of question?.validations">
+                    <button *ngIf="validation_ids.includes(answer.id)" (click)="removeSelectedAnswer(answer.id)"
+                        class="p-2  border border-indigo-400 bg-indigo-400 text-gray-100 rounded-md font-medium text-sm">{{
+                        answer.answer?.text }}</button>
+                    <button *ngIf="!validation_ids.includes(answer.id)" (click)="selectAnswer(answer.id)"
+                        class="p-2 border border-indigo-400 text-indigo-500 hover:bg-indigo-400 hover:text-gray-100  rounded-md font-medium text-sm">{{
+                        answer.answer?.text }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

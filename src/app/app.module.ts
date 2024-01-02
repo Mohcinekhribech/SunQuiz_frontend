@@ -26,6 +26,23 @@ import { QuestionInfoComponent } from './Questions/question-info/question-info.c
 import { ChooseSubjectForQuestionComponent } from './Questions/choose-subject-for-question/choose-subject-for-question.component';
 import { ChooseMediaForQuestionComponent } from './Questions/choose-media-for-question/choose-media-for-question.component';
 import { ChooseAnswersForQuestionComponent } from './Questions/choose-answers-for-question/choose-answers-for-question.component';
+import { TeacherTableComponent } from './Teachers/teacher-table/teacher-table.component';
+import { AddTeacherFormComponent } from './Teachers/add-teacher-form/add-teacher-form.component';
+import { UpdateTeacherFormComponent } from './Teachers/update-teacher-form/update-teacher-form.component';
+import { StudentTableComponent } from './Students/student-table/student-table.component';
+import { AddStudentFormComponent } from './Students/add-student-form/add-student-form.component';
+import { UpdateStudentFormComponent } from './Students/update-student-form/update-student-form.component';
+import { QuizTableComponent } from './Quiz/quiz-table/quiz-table.component';
+import { AddQuizFormComponent } from './Quiz/add-quiz-form/add-quiz-form.component';
+import { ChooseQuestionsForQuizComponent } from './Quiz/choose-questions-for-quiz/choose-questions-for-quiz.component';
+import { QuizInfoComponent } from './Quiz/quiz-info/quiz-info.component';
+import { PassingQuizComponent } from './StudentQuiz/passing-quiz/passing-quiz.component';
+import { QuizResultComponent } from './StudentQuiz/quiz-result/quiz-result.component';
+import { QuizsAssignedToStudentComponent } from './StudentQuiz/quizs-assigned-to-student/quizs-assigned-to-student.component';
+import { TestComponent } from './test/test.component';
+import { AlloComponent } from './allo/allo.component';
+import { ConversationComponent } from './chat/conversation/conversation.component';
+import { RoomsComponent } from './chat/rooms/rooms.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +66,24 @@ import { ChooseAnswersForQuestionComponent } from './Questions/choose-answers-fo
     QuestionInfoComponent,
     ChooseSubjectForQuestionComponent,
     ChooseMediaForQuestionComponent,
-    ChooseAnswersForQuestionComponent 
+    ChooseAnswersForQuestionComponent,
+    TeacherTableComponent,
+    AddTeacherFormComponent,
+    UpdateTeacherFormComponent,
+    StudentTableComponent,
+    AddStudentFormComponent,
+    UpdateStudentFormComponent,
+    QuizTableComponent,
+    AddQuizFormComponent,
+    ChooseQuestionsForQuizComponent,
+    QuizInfoComponent,
+    PassingQuizComponent,
+    QuizResultComponent,
+    QuizsAssignedToStudentComponent,
+    TestComponent,
+    AlloComponent,
+    ConversationComponent,
+    RoomsComponent 
   ],
   imports: [
     BrowserModule,

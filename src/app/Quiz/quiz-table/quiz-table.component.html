@@ -1,0 +1,105 @@
+
+<app-admin-dashboard>
+    <div class="relative overflow-x-auto w-full bg-[#FEFEFE] p-2 rounded-md">
+        <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+            <div class="w-full md:w-1/2">
+                <form class="flex items-center">
+                    <label for="simple-search" class="sr-only">Search</label>
+                    <div class="relative w-full">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search" required="">
+                    </div>
+                </form>
+            </div>
+            <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                <button (click)="isShowAddForm=true" type="button" class="flex items-center justify-center text-white bg-indigo-400 hover:bg-indigo-500 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                    <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                    </svg>
+                    Add Subject
+                </button>
+            </div>
+        </div>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        #
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        comment
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        passing score
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        chances
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Teacher
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let quiz of quizs" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{quiz.id}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{quiz.comment}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{quiz.passScore}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{quiz.chances}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{quiz.teacher?.firstName}} {{quiz.teacher?.lastName}}
+                    </td>
+                    <td class="px-6 py-4">
+                       <div class="flex space-x-4">
+                        <button (click)="showupdateForm(quiz.id)" class="text-gray-500 hover:text-lime-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 15l8.385 -8.415a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3z" /><path d="M16 5l3 3" /><path d="M9 7.07a7 7 0 0 0 1 13.93a7 7 0 0 0 6.929 -6" /></svg>
+                        </button>
+                        <button (click)="delete(quiz.id)" class="text-gray-500 hover:text-red-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                        </button>
+                       </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+            <div class="p-2">
+                <div class="flex flex-col">
+                    <span class="text-sm text-gray-700 dark:text-gray-400">
+                        page <span class="font-semibold text-gray-900 dark:text-white">{{ page+1 }}</span> / <span class="font-semibold text-gray-900 dark:text-white">{{ totalPages }}</span>
+                    </span>
+                    <div class="inline-flex mt-2 space-x-2">
+                    <button (click)="prevPage()" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-indigo-400 rounded-sm hover:bg-indigo-500">
+                        <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                        </svg>
+                        Prev
+                    </button>
+                    <button (click)="nextPage()" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-indigo-400 rounded-sm hover:bg-indigo-500">
+                        Next
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+</app-admin-dashboard>

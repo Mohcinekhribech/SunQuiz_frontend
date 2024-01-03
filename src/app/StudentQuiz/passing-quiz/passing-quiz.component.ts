@@ -6,6 +6,7 @@ import { Quiz } from 'src/app/Core/Models/Quiz.model';
 import { Validation } from 'src/app/Core/Models/Validation.model';
 import { QuizService } from 'src/app/Core/Services/quiz.service';
 import { StudentAnswerService } from 'src/app/Core/Services/student-answer.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-passing-quiz',
@@ -18,6 +19,7 @@ export class PassingQuizComponent{
   index:number=0
   points:number=0;
   validation_ids:number[]=[]
+  result : number = 0
   quiz:Quiz={
     id: 0,
     passScore: 0,
@@ -89,18 +91,23 @@ export class PassingQuizComponent{
     this.question = this.quiz.quizzQuestions[this.index].question
     this.startTimer(this.quiz.quizzQuestions[this.index].duration)
   }
-  selectAnswer(id:number)
+  selectAnswer(id:number,points:number)
   {
     this.validation_ids.push(id);
+    this.result += points
   }
-  removeSelectedAnswer(id:number)
+  removeSelectedAnswer(id:number,points:number)
   {
     this.validation_ids.splice(this.validation_ids.indexOf(id))
+    this.result -= points
   }
   Done()
   {
     this.validation_ids.forEach(id => {
       this.studentAnswer.postData(1,id).subscribe(()=>console.log(1))
     });
+    if(this.result >= this.quiz.passScore){
+      swal("You passed the quiz with success , Points :"+ this.result)
+    }else swal("Good Luck next time , Points : "+ this.result)
   }
 }

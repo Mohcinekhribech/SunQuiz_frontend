@@ -43,10 +43,10 @@
         <div class="w-full flex justify-center items-center h-[50vh] overflow-y-scroll">
             <div class=" p-4 grid grid-cols-2 gap-4 w-full">
                 <div class="w-full flex flex-col" *ngFor="let answer of question?.validations">
-                    <button *ngIf="validation_ids.includes(answer.id)" (click)="removeSelectedAnswer(answer.id)"
+                    <button *ngIf="validation_ids.includes(answer.id)" (click)="removeSelectedAnswer(answer.id,answer.points)"
                         class="p-2  border border-indigo-400 bg-indigo-400 text-gray-100 rounded-md font-medium text-sm">{{
                         answer.answer?.text }}</button>
-                    <button *ngIf="!validation_ids.includes(answer.id)" (click)="selectAnswer(answer.id)"
+                    <button *ngIf="!validation_ids.includes(answer.id)" (click)="selectAnswer(answer.id,answer.points)"
                         class="p-2 border border-indigo-400 text-indigo-500 hover:bg-indigo-400 hover:text-gray-100  rounded-md font-medium text-sm">{{
                         answer.answer?.text }}</button>
                 </div>

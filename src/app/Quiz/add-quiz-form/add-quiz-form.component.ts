@@ -15,7 +15,7 @@ export class AddQuizFormComponent {
     chances: 0,
     comment: '',
     duration: '01:02:02',
-    teacher_id: 0
+    teacher_id: 9
   }
   steps:number = 0;
   receiveDataFromQuizInfo(data:any)
@@ -25,7 +25,7 @@ export class AddQuizFormComponent {
     this.quiz.chances = data.chances
     this.quiz.comment = data.comment
     // this.quiz.duration = data.duration
-    this.quiz.teacher_id = data.teacher_id
+    this.quiz.teacher_id = 9
     this.postData()
   }
 

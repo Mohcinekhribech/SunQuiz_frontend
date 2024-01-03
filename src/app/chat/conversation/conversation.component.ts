@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChatMessageReq } from 'src/app/Core/Models/ChatMessageReq.model';
 import { ChatMessageResp } from 'src/app/Core/Models/ChatMessageResp.model';
@@ -22,6 +22,17 @@ export class ConversationComponent {
     owner: null,
     messages: []
   };
+
+  @ViewChild('scrollContainer', { static: true })
+  scrollContainer!: ElementRef;
+
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom() {
+    this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+  }
     
   constructor(private chatService :ChatService, private route :ActivatedRoute, private roomService : RoomService){
   }
@@ -53,10 +64,9 @@ export class ConversationComponent {
   }
 
   listenerMessage() {
-    console.log("test")
     this.chatService.getMessageSubject().subscribe((messages: any) => {
-      this.room.messages.push(messages)
-      console.log('Message List:', this.messageList); // Log the entire messageList for debugging
+      this.room.messages.push(messages[messages.length-1])
+      console.log('Message List:', this.room.messages); // Log the entire messageList for debugging
     });
   }
 }

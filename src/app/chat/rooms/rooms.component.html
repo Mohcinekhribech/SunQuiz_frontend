@@ -1,8 +1,7 @@
-<div>
-    <div v-if="!conversationStore.Loading" class="flex m-6 space-x-2 h-[90vh]">
-        <div class="w-1/2">
-            <p class="font-medium text-xs"> Rooms </p>
-            <div class="bg-white p-[2px] rounded-lg">
+<div class="flex p-6 space-x-2 h-[100vh] bg-gray-50">
+        <div class="w-full bg-white shadow rounded-lg">
+            <p class="font-medium text-md p-4 "> Rooms </p>
+            <div class="bg-white p-[2px] rounded-lg h-[60vh]">
                 <div
                     *ngFor="let room of rooms" 
                     class="flex space-x-4 bg-[#F4F5F8] p-2 m-2 rounded-lg">
@@ -12,5 +11,4 @@
             </div>
         </div>
         <app-conversation [roomId]="roomId"></app-conversation>
-    </div>
 </div>
